@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		<h3> Amonestaciones </h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Tarjetas rojas</th>
+						<th>Tarjetas amarillas</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for jugador in sancionesList %}
+						<tr>
+							<td>{{ jugador.nombre }}</td>
+							<td>{{ jugador.tarjetas_rojas }}</td>
+							<td>{{ jugador.tarjetas_amarillas}}</td>
+					{% endfor %}
+				</tbody>
+			</table>
+
+
+
+		
+	{% endblock %}

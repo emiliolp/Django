@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if partidoList %}
+			
+			<h3> Partidos </h3>
+
+				<table border="1">
+					<thead>
+						<tr>
+							<th>Partido</th>
+							<th>Fecha</th>
+						</tr>
+					
+					<tbody>
+						{% for Partido in partidoList %}
+							<tr>
+								{% if not Partido.resultado_equipo_casa %}
+									<td><a href="/principal/calendario/jornada{{Partido.jornada}}/{{Partido.id}}">{{ Partido.nombre_equipo_casa }} - {{ Partido.nombre_equipo_fuera }}</td>
+									<td>{{Partido.fecha_partido}}
+									<a href="/principal/calendario/jornada{{Partido.jornada}}/{{Partido.id}}/editar_partido/"><input type="submit" value="Edit"></a></td>
+									
+								{% else %}
+									<td><a href="/principal/calendario/jornada{{Partido.jornada}}/{{Partido.id}}">{{ Partido.nombre_equipo_casa }} {{Partido.resultado_equipo_casa}} - {{ Partido.nombre_equipo_fuera }} {{ Partido.resultado_equipo_fuera }}</a></td>
+									<td>Finalizado
+									<a href="/principal/calendario/jornada{{Partido.jornada}}/{{Partido.id}}/editar_partido/"><input type="submit" value="Edit"></a></td>
+									
+								{% endif %}
+
+							</tr>
+
+						{% endfor %}
+			
+				</table>
+			
+
+		{% else %}
+			<h1> No hay partidos </h1>
+		{% endif %}
+		{% if jornada %}
+		<a href="/principal/calendario/jornada{{jornada}}/nuevo_partido"><input type="submit" value="Nuevo partido"></a>
+		<a href="/principal/calendario/jornada{{jornada}}/eliminar_jornada/"><input type="submit" value="Eliminar"></a>
+		{% endif %}
+	{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if equipo %}
+			<h3> {{equipo.nombre_equipo}} </h3>
+			<IMG src="{{MEDIA_URL}}{{equipo.escudo}}" width='100' height='100'>
+			<br>Estadio: {{ equipo.nombre_estadio }}</br>
+			Capacidad: {{ equipo.aforo }} espectadores
+			<br>Año fundación: {{equipo.anyo_fundacion}}</br>
+			Ciudad: {{equipo.ciudad}}
+			<br>Presidente: {{equipo.presidente}}</br>
+			Socios: {{equipo.numero_socios}}
+			<br><a href="/principal/equipos/{{equipo.id}}/eliminar_equipo/"><input type="submit" value="Eliminar"></a>
+			<h3>Plantilla</h3>
+			{% for jugador in jugadorList %}
+				<a href="/principal/equipos/{{equipo.id}}/{{jugador.id}}">{{jugador.nombre}}
+				<a href="/principal/equipos/{{equipo.id}}/{{jugador.id}}/editar_jugador"><input type="submit" value="Editar"></a><br>
+			{% endfor %}
+			<br><a href="/principal/equipos/{{equipo.id}}/nuevo_jugador"><input type="submit" value="Nuevo jugador"></a>
+			
+			
+		{% endif %}
+		
+	{% endblock %}

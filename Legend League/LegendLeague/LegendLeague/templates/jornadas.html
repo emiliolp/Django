@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if jornadaList %}
+			<ul>
+			<h3> Calendario </h3>
+			{% for Jornada in jornadaList %}
+				<li><a href="/principal/calendario/jornada{{Jornada.id}}">Jornada{{ Jornada.numero }}</a>
+				<a href="/principal/calendario/jornada{{Jornada.id}}/editar_jornada/"><input type="submit" value="Editar"></a></li><br>
+			{% endfor %}
+			</ul>
+		{% else %}
+			<h1> No hay Jornadas </h1>
+		{% endif %}
+		<p><a href="/principal/calendario/nueva_jornada"><input type="submit" value="Nueva jornada"></a></p>
+	</body>
+	{% endblock %}
+</html>

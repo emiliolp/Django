@@ -1,0 +1,39 @@
+from django.conf.urls import patterns, include, url
+from usuario import views
+
+urlpatterns=patterns('',
+	# Registrar nuevo usuario
+	url (r'nuevo-usuario$', views.nuevoUsuario, name = 'usuarioNuevo'),
+	# Crear perfil real usuario
+	url (r'crear-perfil-real$', views.crearPerfilReal, name = 'crearPerfilReal'),
+	# Crear perfil falso usuario
+	url (r'crear-perfil-falso$', views.crearPerfilFalso, name = 'crearPerfilFalso'),
+	# Listar perfiles
+	url (r'buscar-perfil$',views.buscar,name='buscarPerfiles'),
+	# Detalles perfil
+	url (r'usuario-(?P<usuario_id>\d+)$', views.detallesPerfil, name = 'detallesPerfil'),
+	# Ver perfil
+	url (r'perfil-(?P<perfil_id>\d+)$', views.verPerfil,name='verPerfil'),
+	# Gente cerca
+	url (r'gente_cerca-(?P<usuario_id>\d+)$',views.mostrarGenteCerca,name='genteCerca'),
+	# Cambiar perfil
+	url (r'cambiar-perfil$', views.cambiarPerfil, name = 'cambiarPerfil'),
+	# Buscar personas
+	url (r'buscar-usuario$', views.buscarUsuario, name = 'buscarUsuario'),
+	# Enviar peticion de amistad
+	url (r'enviar-peticion-amistad-(?P<perfil_id>\d+)$', views.enviarPeticionAmistad, name = 'enviarPeticionAmistad'),
+	# Ver peticiones de amistad
+	url (r'ver-peticiones-amistad-(?P<usuario_id>\d+)$', views.verPeticionesAmistad, name = 'verPeticionesAmistad'),
+	# Detalles de una peticion de amistad
+	url (r'detalles-peticion-amistad-(?P<peticion_id>\d+)$', views.detallesPeticionAmistad, name = 'detallesPeticionAmistad'),
+	# Aceptar peticion de amistad
+	url (r'aceptar-peticion-amistad-(?P<peticion_id>\d+)$', views.aceptarPeticionAmistad, name = 'aceptarPeticionAmistad'),
+	# Rechazar peticion de amistad
+	url (r'rechazar-peticion-amistad-(?P<peticion_id>\d+)$', views.rechazarPeticionAmistad, name = 'rechazarPeticionAmistad'),
+	# Ver amigos
+	url (r'ver-amigos-(?P<perfil_id>\d+)$', views.verAmigos, name = 'verAmigos'),
+	# Login
+	url (r'login$', views.usuarioLogin, name = 'usuarioLogin'),
+	# Logout
+	url (r'logout$', views.usuarioLogout, name = 'usuarioLogout'),
+)

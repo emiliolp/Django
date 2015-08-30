@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block TitleWeb %} Enviar petición de amistad {% endblock %}
+
+{% block TitleContent %} Petición de amistad ya enviada {% endblock %}
+
+{% block Content %}
+
+	<p> Ya has enviado una solicitud de amistad a {{usuario.nombre}}, espera a que responda.</p>
+
+{% endblock %}
+<div id="dividerAbajoRight"></div>

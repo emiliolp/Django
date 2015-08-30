@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+  {% block TitleWeb %} Baduco {% endblock %}
+
+  {% block TitleNavBar %} <a class = "navbar-brand" href = "/usuario/"> Baduco     </a> {% endblock %}
+
+	{% block MainNavBar %}
+		{% if user.is_authenticated and not user.is_staff %}
+			<li class = "active"><a href = "/usuario/usuario-{{user.id}}"> Perfil </a></li>
+			<li><a href = "/usuario/ver-peticiones-amistad-{{user.id}}"> Peticiones </a></li>
+      <li><div id = "geolocal"></div></li>
+      <li><a href = "/fileTransfer/listFiles/"> Transf. archivos </a></li>
+      <li><a href = "/usuario/logout"> Logout </a></li>
+			<!-- <li><a href = "/chat/lista-chats"> Chats </a></li> -->
+			<li>
+				<!-- Buscador de personas -->
+				<form class="form-inline" role="form" action = "/usuario/buscar-usuario" method = "get">
+					<div class="input-append">
+						<input class="form-control" type = "text" name = "name" value = "" placeholder = "Buscar persona">
+						<input type = "submit" value = "Buscar">
+					</div>
+				</form>
+			</li>
+		{% endif %}
+	{% endblock %}
+
+	{% block TitleContent %} Comentarios {% endblock %}
+  {% block section-navigation %}
+	<div id="user">
+		<img src = '{{MEDIA_URL}}{{perfil.imagen}}' alt = "Imagen de perfil de {{perfil.nombre}}"  width='100' height='100'/>
+		<a href="/usuario/usuario-{{user.id}}">{{perfil.nombre}}</a>
+	</div>
+	<br><strong>Perfil: </strong>{{perfil.tipo}}</br>
+	<strong>Amigos: </strong>{{numAmigos}}
+	<strong>Puntuación: </strong>{{perfil.mediaVotos}}
+	<div id="dividerProfileLeft"></div>
+  {% endblock %}
+
+	{% block Content %}
+    {% if comentarios %}
+      {% for comentario in comentarios %}
+      <div class = "row">
+          <div class = "col-md-2">
+            <p> De: {{comentario.perfilEmisor}} </p>
+          </div>
+          <div class = "col-md-7">
+            <blockquote>
+              <p> {{comentario.text}} </p>
+              <footer> {{comentario.fecha}}, {{comentario.hora}} </footer>
+            </blockquote>
+          </div>
+
+          <div class = "col-md-2">
+            <p>
+              <a class = "btn btn-md btn-link" href = "/usuario/ver-comentarios-comentario-{{comentario.id}}"> Ver comentarios </a>
+            </p>
+            <p>
+              <a class = "btn btn-md btn-link" href = "/usuario/hacer-comentario-{{comentario.id}}"> Hacer comentario </a>
+            </p>
+            <p>
+              <a class = "btn btn-md btn-link" href = "/usuario/editar-comentario-{{comentario.id}}"> Editar comentario </a>
+            </p>
+            <p>
+              <a class = "btn btn-md btn-link" href = "/usuario/eliminar-comentario-{{comentario.id}}"> Eliminar comentario </a>
+            </p>
+          </div>
+
+      {% endfor %}
+    {% else %}
+      <p> No tienes comentarios </p>
+    {% endif %}
+
+{% endblock %}
+        
+          <div id="dividerAbajoRight"></div>

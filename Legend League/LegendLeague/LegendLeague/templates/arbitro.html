@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if arbitro %}
+			<h3> {{arbitro.nombre}} </h3>
+			<IMG src="{{MEDIA_URL}}{{arbitro.cara}}" width='75' height='75'>
+			<br>Colegio arbitral: {{ arbitro.colegio_arbitral }}</br>
+			Número de temporadas: {{ arbitro.numero_temporadas }} 
+			
+			<br><a href="/principal/arbitros/{{arbitro.id}}/eliminar_arbitro/"><input type="submit" value="Eliminar"></a>
+		{% endif %}
+		
+	{% endblock %}

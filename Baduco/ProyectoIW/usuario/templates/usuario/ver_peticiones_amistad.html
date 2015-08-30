@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Peticiones de amistad pendientes {% endblock %}
+
+{% block Content %}
+
+	{% if peticiones %}
+		{% for peticion in peticiones %}
+
+			<li><a href = "/usuario/detalles-peticion-amistad-{{peticion.id}}"> {{peticion.perfil_solicitante}} </a></li>
+
+		{% endfor %}
+	{% else %}
+
+		<p> No tienes peticiones de amistad pendientes. </p>
+
+	{% endif %}
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerDiarios"></div>
+{% endblock %}

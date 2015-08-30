@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Perfil {% endblock %}
+
+{% block RightNavBar %}
+
+	<li><a href = "#"> Default </a></li>
+	<li class = "active"><a href = "#"> Default2 </a></li>
+	<li><a href = "/usuario/cambiar-perfil"> Cambiar perfil </a></li>
+
+{% endblock %}
+
+{% block Content %}
+	{% for perfil in perfiles %}
+		<a href="/usuario/ver-perfil-{{perfil.id}}">{{perfil.nombre}}</a>
+	{% endfor %}
+
+{% endblock %}
+<div id="dividerAbajoRight"></div>

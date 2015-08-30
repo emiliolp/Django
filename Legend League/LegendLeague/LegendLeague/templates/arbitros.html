@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if arbitroList %}
+			
+			<h3> Árbitros </h3>
+
+				{% for Arbitro in arbitroList %}
+					<a href="/principal/arbitros/{{Arbitro.id}}">{{ Arbitro.nombre }}</a>
+					<a href="/principal/arbitros/{{Arbitro.id}}/edit/"><input type="submit" value="Editar"></a><br>
+				{% endfor %}
+
+			
+		{% else %}
+			<h1> No hay árbitros </h1>
+		{% endif %}
+		<p><a href="/principal/arbitros/nuevo_arbitro"><input type="submit" value="Nuevo Árbitro"></a></p>
+	{% endblock %}

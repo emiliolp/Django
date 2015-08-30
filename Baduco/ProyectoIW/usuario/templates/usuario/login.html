@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block TitleWeb %} Login {% endblock %}
+
+{% block TitleContent %} Acceder al sistema {% endblock %}
+
+{% block Content %}
+
+	<form role = "form" id = "form" method = "post" action = ""> {% csrf_token %}
+		<div class = "form-group">
+			<table class = 'formTable'> {{form}} </table>
+			<p><input type = 'submit' value = 'Login'></p>
+		</div>
+	</form>
+
+{% endblock %}
+{% block section-navigation %}
+{% endblock %}

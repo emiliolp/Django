@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if partido %}
+			{%if partido.resultado_equipo_casa %}
+				<h3> {{partido.nombre_equipo_casa}} {{partido.resultado_equipo_casa}} - {{partido.resultado_equipo_fuera }} {{partido.nombre_equipo_fuera}} </h3>
+			{% else %}
+				<h3> {{partido.nombre_equipo_casa}} - {{partido.nombre_equipo_fuera}}</h3>
+			{% endif %}
+			
+			<h4>Goles</h4>
+			<ul>
+				{% for participa in golesList %}
+					<li>{{ participa.jugador }}</li>
+				{% endfor %}
+			</ul>
+			<b>Árbitro:</b> {{partido.arbitro}}
+			<h4>Amarillas</h4>
+			<ul>
+				{% for amarilla in amarillasList %}
+					<li>{{ amarilla.jugador }}</li>
+				{% endfor %}
+			</ul>
+			<h4>Rojas</h4>
+			<ul>
+				{% for roja in rojasList %}
+					<li>{{ roja.jugador }}</li>
+				{% endfor %}
+			</ul>
+			<b>Estadio:</b> {{ estadio }}<br>
+			<br><a href="/principal/calendario/jornada{{partido.jornada}}/{{partido.id}}/eliminar_partido/"><input type="submit" value="Eliminar"></a>
+			
+
+		{% endif %}
+		
+	{% endblock %}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www3.uco.es/m1314/file.php/827/base.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Leagend League</title>
+</head>
+<body>
+	<div id="wrapper">
+<!-- menu -->
+		<div id="menu">
+			<ul>
+				<li><a href="http://127.0.0.1:8000/">HOME</a></li>
+				<li><a href="/principal/calendario/proxima_jornada">RESULTADOS</a></li>
+				<li><a href="/principal/clasificacion">CLASIFICACIÓN</a></li>
+				<li><a href="/principal/calendario">CALENDARIO</a></li>
+				<li><a href="/principal/goleadores">GOLEADORES</a></li>
+				<li><a href="/principal/sanciones">SANCIONES</a></li>
+				<li><a href="/principal/equipos">EQUIPOS</a></li>
+				<li><a href="/principal/arbitros">ÁRBITROS</a></li>
+			</ul>
+		</div>
+<!-- banner -->
+		<div id="banner">
+			
+		</div>
+<!-- content -->
+		<div id="content-box">
+		<div class="inner_copy"></div>
+<!-- welcome -->
+		{% block todo %}
+			<div id="welcome">
+				<div class="title">Equipos</div>
+				<div>
+						{% if equipoList %}
+
+				{% for Equipo in equipoList %}
+					<IMG src="{{MEDIA_URL}}{{Equipo.escudo}}" width='30' height='30'>
+					<a href="/principal/equipos/{{Equipo.id}}">{{ Equipo.nombre_equipo }}</a><br></br>
+				{% endfor %}
+			
+		{% else %}
+			<h1> No hay Equipos </h1>
+		{% endif %}
+				</div>
+			</div>
+			<div class="divider"></div>
+<!-- news -->
+			<div id="news">
+			{% block content %}
+				<div class="title">Noticias</div>
+				{% for new in newList %}
+				<div class="sub-title">{{new.fecha}}</div>
+				<div>
+					{{new.titular}}<br><br>
+				</div>
+				{% endfor %}
+
+				<div class="more-btn"><a href="/noticias/"><input type="submit" value="Más"></a></div>
+			{% endblock %}
+			</div>
+			<div class="divider"></div>
+<!-- Featured Event -->
+			<div id="event">
+				<div class="title">Próxima jornada</div>
+				<div>
+					{% for Partido in partidoList %}
+							<tr>
+								{% if Partido.resultado_equipo_casa %}
+									<td><a href="/principal/calendario/jornada{{Partido.jornada}}/{{Partido.id}}">{{ Partido.nombre_equipo_casa }} {{Partido.resultado_equipo_casa}} - {{ Partido.nombre_equipo_fuera }} {{ Partido.resultado_equipo_fuera }}</a></td><br>
+								{% else %}
+									<td><a href="/principal/calendario/jornada{{Partido.jornada}}/{{Partido.id}}">{{ Partido.nombre_equipo_casa }} - {{ Partido.nombre_equipo_fuera }}</a></td><br>
+								{% endif %}
+							</tr>
+					{% endfor %}
+				</div>
+				<div class="more-btn"><a href="/principal/calendario/proxima_jornada"><input type="submit" value="Más"></a></div>
+				<div id="h-divider"></div>
+<!-- newsletter signup -->
+
+				
+					{% if user.is_authenticated %}
+					
+					
+		   	 			<h3>Bienvenido a Legend League {{user.first_name}} {{user.last_name}} <a href="/users/{{user.id}}">({{user.username}})</a></h3>
+		   	 			<a href="/users/{{user.id}}/edit_user"><input type="submit" value="Editar usuario"></a>
+		   	 			<br><div id="logout"><a href="/principal/users/logout">Logout</a></div>
+		   	 			
+					{% else %}
+							No se encuentra en el sistema<br><a href="/users/login">Iniciar sesión</a><br>
+	    					<br>En el caso de aún no se haya registrado<br><a href="/principal/users/nuevo_usuario">Registrarse</a>
+					{% endif %}
+				
+				
+			</div>
+		{% endblock %}
+			<div style="clear:both;"></div>
+<!-- footer -->
+			<div id="footer">
+				<div class="fleft"><p>Copyright statement.</p></div>
+				<div class="fright"><p>Encuentre m&aacute;s plantillas web gratis <a href="http://www.mejoresplantillasgratis.es" target="_blank">en MPG</a>.</p></div><div class="fclear"></div>
+				<div class="fcenter">
+				<p>Template Designed By: <a href="http://www.mytemplatebox.com/">Free Website Templates</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

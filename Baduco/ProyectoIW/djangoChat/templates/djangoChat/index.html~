@@ -1,0 +1,51 @@
+{% extends "djangoChat/base.html" %}
+{% block Content %}
+	
+<!--  chat box area -->
+<section class="chatBox">
+	
+</section>
+
+
+
+
+
+<!--  sidebar area -->
+<section class="sidebar">
+	<h4><a href="/chat/logout">Salir de la sala</a></h4>
+	<div class="side">
+	<h2>Online Users</h2>
+	<div class="onlineUsers">
+		
+		
+			
+
+	</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!--  input area  -->
+<section class="input-area">
+		
+	<textarea class="input-box"></textarea>
+	<button class="submit">send</button>
+	<p class="clear-both"></p>
+</section>
+
+
+
+	
+
+				
+
+{% endblock Content %}

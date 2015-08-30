@@ -1,0 +1,33 @@
+.fleft {float:left}
+.fright {float:right}
+.fclear {clear:both}
+.fcenter {float:none;text-align:center}
+body {background-color:#000;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#fff}
+a {color:#d7440b}
+#wrapper {width:960px;margin:0 auto;background:url("/media/images/background.jpg") top left no-repeat}
+#menu {background:url("/media/images/menu-bg.png") top center no-repeat;width:900px;height:71px;margin-left:50px;margin-top:10px}
+#menu ul {list-style:none;margin:0;padding:0}
+#menu ul li {padding:0;margin-left:15px;margin-top:15px;background:url("/media/images/rr.jpg");width:91px;height:34px;float:left}
+#menu ul li a {display:block;text-decoration:none;font-size:12px;font-weight:bold;cursor:pointer;color:#000;text-align:center;padding-top:10px}
+#menu ul li a:hover {}
+#banner {background:url("/media/images/cabecera futbol 2.jpg") top center no-repeat;width:960px;height:282px}
+#logo {margin-left:60px;padding-top:120px}
+#content-box {width:860px;background:url("/media/images/black-bg.png") top left repeat-x;margin-left:30px;padding:20px;margin-top:0px}
+#welcome {float:left;clear:none;width:120px}
+#news {float:left;clear:none;width:400px}
+#event {float:left;clear:none;width:255px}
+.divider {float:left;clear:none;border-left:1px solid #942a01;height:340px;margin-left:20px;margin-right:20px}
+.title {font-size:20px;color:#d7440b;margin-bottom:15px}
+.more-btn {text-align:right;margin-top:10px}
+.sub-title {color:#d7440b;font-size:16px;text-decoration:underline}
+.inner_copy {border:0;color:#f00;float:left;width:50% !important;margin:-100% 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:11px}
+#h-divider {border-top:1px solid #942a01;margin-top:20px;margin-bottom:20px}	
+#newsletter {background:#d7440b;width:270px}
+#logout {background:#000000}
+#newsletter-top {background:url("/media/images/newsletter-top.png") top left no-repeat;width:270px;height:23px;padding-left:15px;font-size:13px;padding-top:3px}
+#signup-box input {background:#000;margin-left:15px;margin-top:15px;width:210px;height:25px;border:#000}
+#unsubcribe {float:left;clear:none;padding-top:15px;margin-left:15px}
+#unsubcribe a {color:#000;font-weight:bold;font-size:13px}
+#subcribe-btn {float:right;clear:none;margin-right:15px;margin-top:10px;margin-bottom:15px}
+#footer {font-size:11px;margin-top:30px;padding-bottom:10px}
+#footer div {padding:0 15px}

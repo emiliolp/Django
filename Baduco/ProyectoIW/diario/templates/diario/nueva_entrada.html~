@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block TitleWeb %} Nueva entrada {% endblock %}
+
+{% block TitleContent %} Nueva entrada {% endblock %}
+
+{% block Content %}
+	
+	<form role = "form" id = "form" method = "post" action = ""> {% csrf_token %}
+		<div class = "form-group">
+			<table class = 'formTable'> {{form}} </table>
+			<p><input type = 'submit' value = 'Crear'></p>
+	</form>
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

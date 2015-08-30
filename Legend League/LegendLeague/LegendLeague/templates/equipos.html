@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if equipoList %}
+			
+			<h3> Equipos </h3>
+	
+				
+				{% for Equipo in equipoList %}
+					<p><a href="/principal/equipos/{{Equipo.id}}">{{ Equipo.nombre_equipo }}</a>
+					<a href="/principal/equipos/{{Equipo.id}}/edit"><input type="submit" value="Editar"></p>
+				{% endfor %}
+				
+			
+		{% else %}
+			<h1> No hay Equipos </h1>
+		{% endif %}
+		<p><a href="/principal/equipos/nuevo_equipo"><input type="submit" value="Nuevo Equipo"></a></p>
+	{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if jugador %}
+			<h3> {{jugador.nombre}} </h3>
+			<IMG src="{{MEDIA_URL}}{{jugador.cara}}" width='75' height='75'><br>
+			Posición: {{jugador.posicion}}<br>
+			Fecha de nacimiento: {{ jugador.fecha_nacimiento }}</br>
+			Peso: {{ jugador.peso }} 
+			<br>
+			Estatura: {{jugador.estatura}}<br>
+			<h4>Partidos jugados:</h4>
+			<ul>
+				{% for participa in participasList %}
+					<li><a href="/principal/equipos/{{equipo.id}}/{{jugador.id}}/participa{{participa.id}}/">{{participa.partido}}
+					<a href="/principal/equipos/{{equipo.id}}/{{jugador.id}}/participa{{participa.id}}/editar_participacion/"><input type="submit" value="Editar"></a></li>
+				{% endfor %}
+			</ul>
+			<a href="/principal/equipos/{{equipo.id}}/{{jugador.id}}/nueva_participacion/"><input type="submit" value="Nueva participacion"></a><br>
+			
+			<br><a href="/principal/equipos/{{equipo.id}}/{{jugador.id}}/eliminar_jugador/"><input type="submit" value="Eliminar"></a>
+		{% endif %}
+		
+	{% endblock %}

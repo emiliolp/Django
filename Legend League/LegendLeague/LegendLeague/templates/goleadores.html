@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		<h3> Goleadores </h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Goles</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for jugador in goleadoresList %}
+						<tr>
+							<td>{{ jugador.nombre }}</td>
+							<td>{{ jugador.goles }}</td>
+					{% endfor %}
+				</tbody>
+			</table>
+
+
+
+		
+	{% endblock %}

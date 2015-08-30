@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block TitleWeb %} Enviar petición de amistad {% endblock %}
+
+{% block TitleContent %} Petición de amistad {% endblock %}
+
+{% block Content %}
+	
+	<form role = "form" id = "form" method = "post" action = ""> {% csrf_token %}
+		<div class = "form-group">
+			<table class = 'formTable'> {{form}} </table>
+			<p><input type = 'submit' value = "Enviar"></p>
+	</form>
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

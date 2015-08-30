@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block TitleWeb %} Baduco {% endblock %}
+  {% block TitleNavBar %}
+    {% if not user.is_authenticated %}
+      <a class = "navbar-brand" href = "/"> Baduco </a>
+    {% else %}
+      <a class = "navbar-brand" href = "/usuario/"> Baduco </a>
+    {% endif %}
+  {% endblock %}
+
+	{% block MainNavBar %}
+		{% if not user.is_authenticated %}
+			<li class = "active"><a href = "/usuario/login"> Login </a></li>
+			<li><a href = "/usuario/nuevo-usuario"> Registrarse </a></li>
+    {% endif %}
+
+    {% if user.is_authenticated and not user.is_staff %}
+      <li class = "active"><div id = "perfilLocal"></div></li>
+      <li><a href = "/usuario/ver-peticiones-amistad-{{user.id}}"> Peticiones </a></li>
+      <li><div id = "geolocal"></div></li>
+      <li><a href = "/fileTransfer/listFiles/"> Transf. archivos </a></li>
+      <li><a href = "/chat/">Chat</a></li>
+      <li><a href = "/usuario/logout"> Logout </a></li>
+
+
+      <!-- <li><a href = "/chat/lista-chats"> Chats </a></li> -->
+      <li>
+        <!-- Buscador de personas -->
+        <form class="form-inline" role="form" action = "/usuario/buscar-usuario" method = "get">
+          <div class="input-append">
+            <input class="form-control" type = "text" name = "name" value = "" placeholder = "Buscar persona">
+            <input type = "submit" value = "Buscar">
+          </div>
+        </form>
+      </li>
+
+      <script>
+      var localizar = document.getElementById ("localizar");
+      localizar.onclick = localize();
+      function localize (){
+        if (navigator.geolocation){
+          navigator.geolocation.getCurrentPosition (mapa, error);
+        }else{
+          alert ('Tu navegador no soporta geolocalizacion.');
+        }
+      }
+
+      function mapa (pos){
+        /************************ Aqui están las variables que te interesan***********************************/
+        var latitud = pos.coords.latitude;
+        var longitud = pos.coords.longitude;
+        printLatitud (latitud, longitud);
+      }
+
+      function error (errorCode){
+        if (errorCode.code == 1)
+          alert ("No has permitido buscar tu localizacion")
+        else if (errorCode.code == 2)
+          alert ("Posicion no disponible")
+        else
+          alert ("Ha ocurrido un error")
+      }
+
+      function printLatitud (latitud, longitud){
+        document.getElementById("perfilLocal").innerHTML+= '<li><a href = "/usuario/usuario-{{user.id}}/'+latitud+'/'+longitud+'">Perfil</a></li>';
+        document.getElementById("imageIzquierda").innerHTML+='<li><a href = "/usuario/usuario-{{user.id}}/'+latitud+'/'+longitud+'">{{perfil.nombre}}</a></li>';
+        document.getElementById("geolocal").innerHTML += '<li><a href = "/usuario/gente_cerca-{{user.id}}/'+latitud+'/'+longitud+'">Gente cerca</a></li>';
+        document.getElementById("geolocal").style.margin="15px 10px 20px 30px";
+        document.getElementById("perfilLocal").style.margin="15px 10px 20px 30px";
+      }
+    </script>
+    <body onLoad="localize()">
+      <div id="map" ></div>
+    </body>
+		{% endif %}
+
+	{% endblock %}
+
+	{% block TitleContent %} <h1 style="font-family:Georgia; margin:0px 0px 0px 150px;">Baduco</h1> {% endblock %}
+
+  {% block section-navigation %}
+  {% if user.is_authenticated and not user.is_staff %}
+	<div id="user">
+		<img src = '{{MEDIA_URL}}{{perfil.imagen}}' alt = "Imagen de perfil de {{perfil.nombre}}"  width='123' height='123'/>
+    <div id = "imageIzquierda"></div>
+	</div>
+
+	<br><strong>Perfil: </strong>{{perfil.tipo}}</br>
+	<strong>Amigos: </strong>{{numAmigos}}
+	<strong>Puntuación: </strong>{{perfil.mediaVotos}}
+  <div id="dividerProfileLeft"></div>
+  {% endif %}
+  {% endblock %}
+
+	{% block Content %}
+
+    <p style="font-size: 14px; margin: 0px 0px 0px 130px;">Bienvenido a la red social. <br>
+
+    <!--
+    <button type="button" class="btn btn-success">Success</button> <br>
+    <button type="button" class="btn btn-primary">Primary</button> <br>
+    <button type="button" class="btn btn-info">Info</button> <br>
+    <button type="button" class="btn btn-warning">Warning</button> <br>
+    <button type="button" class="btn btn-danger">Danger</button> <br>
+    <button type="button" class="btn btn-link">Link</button> <br>
+    <button type="button" class="btn btn-lg">Lg</button> <br>
+    <button type="button" class="btn btn-xs">Xs</button> <br>
+    <button type="button" class="btn btn-sm">Sm</button> <br>
+    <button type="button" class="btn btn-block">Block</button> <br>
+    <button type="button" class="btn btn-tcc">Personalizado</button> <br>
+    -->
+	{% endblock %}

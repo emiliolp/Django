@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www3.uco.es/m1314/file.php/827/base.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<div id="container">
+	<div id="header">
+		{% if user.is_authenticated %}
+		   	 <h3>{{user.first_name}} {{user.last_name}} ({{user.username}}) logged</h3>
+		{% endif %}
+	</h1></div>
+	<ul id="menu-bar">
+ 		<li class="active"><a href="http://127.0.0.1:8000/">Home</a></li>
+ 		<li><a href="/principal/calendario/jornada1">Resultados</a></li>
+ 		<li><a href="/principal/calendario">Calendario</a></li>
+ 		<li><a href="/principal/clasificacion">Clasificacion</a></li>
+ 		<li><a href="/principal/equipos">Equipos</a></li>
+	</ul>
+	
+	<div id="content-container">
+		<div id="section-navigation">
+			{% block section-navigation %}
+			<ul>
+				<li><a href="http://www3.uco.es/m1314/file.php/827/base.html#">Section page 1</a></li>
+				<li><a href="http://www3.uco.es/m1314/file.php/827/base.html#">Section page 2</a></li>
+				<li><a href="http://www3.uco.es/m1314/file.php/827/base.html#">Section page 3</a></li>
+				<li><a href="http://www3.uco.es/m1314/file.php/827/base.html#">Section page 4</a></li>
+			</ul>
+			{% endblock %}
+		</div>
+		<div id="content">
+			{% block content %}
+			<h2>Content here</h2>			
+			{% endblock %}
+		</div>
+		<div id="aside">
+			{% block aside %}
+			<h3>Aside heading</h3>
+			{% endblock %}
+		</div>
+		<div id="footer">
+			{% block footer %}
+			Copyright © Emilio López Piña, 2013
+			{% endblock %}
+		</div>
+	</div>
+</div>
+
+
+
+</body></html>

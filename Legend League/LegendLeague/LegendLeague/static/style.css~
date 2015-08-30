@@ -1,0 +1,180 @@
+#container
+{
+	margin: 0 auto;
+	width: 1000px;
+	background: #fff;
+}
+
+#header
+{
+	background: #ccc;
+	padding: 110px;
+	background: url("https://mail.google.com/mail/u/0/?ui=2&ik=3c2743f3f4&view=fimg&th=14339ec89514c5ad&attid=0.1&disp=inline&safe=1&attbid=ANGjdJ-lbwdifyCTXi9XzhPBeiNenj1dy0Lvc24M8g8aj3xdQ7ggGPKpkfr0M7MAvpPJXEMOYvt9psq0y4aQkomFCwXHnTGgBuR3_W91Nmpfk6tCc1UkrReCDgPQAcc&ats=1388765543617&rm=14339ec89514c5ad&zw&sz=w1189-h534") no-repeat;
+}
+
+#header h3 {text-align:right;}
+#menu-bar {
+  width: 98.8%;
+  margin: 0px 0px 0px 0px;
+  padding: 6px 6px 4px 6px;
+  height: 30px;
+  line-height: 100%;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  box-shadow: 2px 2px 3px #666666;
+  -webkit-box-shadow: 2px 2px 3px #666666;
+  -moz-box-shadow: 2px 2px 3px #666666;
+  background: #8B8B8B;
+  background: linear-gradient(top,  #A9A9A9,  #212121);
+  background: -ms-linear-gradient(top,  #A9A9A9,  #212121);
+  background: -webkit-gradient(linear, left top, left bottom, from(#A9A9A9), to(#212121));
+  background: -moz-linear-gradient(top,  #A9A9A9,  #212121);
+  border: dotted 0px #6D6D6D;
+  position:relative;
+  z-index:999;
+}
+#menu-bar li {
+  margin: 0px 0px 6px 0px;
+  padding: 0px 6px 0px 6px;
+  float: left;
+  position: relative;
+  list-style: none;
+}
+#menu-bar a {
+  font-weight: bold;
+  font-family: arial;
+  font-style: normal;
+  font-size: 14px;
+  color: #E7E5E5;
+  text-decoration: none;
+  display: block;
+  padding: 6px 20px 6px 20px;
+  margin: 0;
+  margin-bottom: 6px;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  text-shadow: 2px 2px 3px #000000;
+}
+
+#menu-bar .active a, #menu-bar li:hover > a {
+  background: #0399D4;
+  background: linear-gradient(top,  #EBEBEB,  #A1A1A1);
+  background: -ms-linear-gradient(top,  #EBEBEB,  #A1A1A1);
+  background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#A1A1A1));
+  background: -moz-linear-gradient(top,  #EBEBEB,  #A1A1A1);
+  color: #424242;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  text-shadow: 2px 2px 3px #FFFFFF;
+}
+
+
+
+
+  
+
+#content-container
+{
+	float: left;
+	width: 1000px;
+	background: #fff;
+}
+
+#section-navigation
+{
+	float: left;
+	width: 160px;
+	padding: 75px 0;
+	margin: 0 20px;
+	display: inline;
+  background-color: #C0C0C0;
+}
+
+#section-navigation ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+#section-navigation ul li
+{
+	margin: 0 0 1em;
+	padding: 0;
+	list-style-type: none;
+  font-weight: bold;
+  font-family: arial;
+  font-style: normal;
+  font-size: 14px;
+  color: #E7E5E5;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 6px;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  text-shadow: 2px 2px 3px #000000;
+}
+
+#section-navigation a {
+  font-weight: bold;
+  font-family: arial;
+  font-style: normal;
+  font-size: 14px;
+  color: #E7E5E5;
+  text-decoration: none;
+  display: block;
+  padding: 6px 20px 6px 20px;
+  margin: 0;
+  margin-bottom: 6px;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  text-shadow: 2px 2px 3px #000000;
+}
+
+#section-navigation .active a, #section-navigation li:hover > a {
+  background: #0399D4;
+  background: linear-gradient(top,  #EBEBEB,  #A1A1A1);
+  background: -ms-linear-gradient(top,  #EBEBEB,  #A1A1A1);
+  background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#A1A1A1));
+  background: -moz-linear-gradient(top,  #EBEBEB,  #A1A1A1);
+  color: #424242;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  text-shadow: 2px 2px 3px #FFFFFF;
+}
+
+
+#content
+{
+	float: left;
+	width: 500px;
+	padding: 20px 0;
+	margin: 0 0 0 30px;
+}
+
+#content h2 { margin: 0; }
+
+#aside
+{
+	float: right;
+	width: 200px;
+	padding: 20px 0;
+	margin: 0 20px 0 0;
+	display: inline;
+}
+
+#aside h3 { margin: 0; }
+
+#footer
+{
+	clear: left;
+	background: #ccc;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+}

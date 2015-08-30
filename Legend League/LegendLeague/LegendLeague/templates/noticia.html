@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if noticia %}
+			Publicación: {{ noticia.fecha }}</br>
+			<h3> {{noticia.titular}} </h3>
+			<IMG src="{{MEDIA_URL}}{{noticia.imagen}}" width='150' height='150'><br><br>
+			{{noticia.noticia}}<br>
+
+			<br><a href="/noticias/{{noticia.id}}/eliminar_noticia"><input type="submit" value="Eliminar"></a>
+		{% endif %}
+		
+	{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Amigos {% endblock %}
+
+{% block Content %}
+
+	{% if amigos %}
+		{% for amigo in amigos %}
+			<img src = '{{MEDIA_URL}}{{amigo.imagen}}' alt = "Imagen de perfil de {{perfil.nombre}}"  width='63' height='63'/>
+			<li style="font-size:25px;"><a href = "/usuario/ver-perfil-{{amigo.id}}"> {{amigo.nombre}} </a></li>
+			<p>
+				<a href = "/usuario/nuevo-comentario-{{amigo.id}}" role = "Hacer comentario"> Hacer comentario </a>
+			</p>
+
+		{% endfor %}
+	{% else %}
+
+		<p> No tienes amigos. </p>
+
+	{% endif %}
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerDiarios"></div>
+	{% if entradas %}
+    {% for entrada in entradas %}
+
+      <ul>
+        <li><a href = "/diario/detalles-entrada-agenda-{{entrada.id}}"> {{entrada.fecha}} {{entrada.hora}} {{entrada.titulo}} </a></li>
+      </ul>
+
+    {% endfor %}
+  {% else %}
+    
+    <p> La agenda no tiene ninguna entrada. </p>
+
+  {% endif %}
+{% endblock %}

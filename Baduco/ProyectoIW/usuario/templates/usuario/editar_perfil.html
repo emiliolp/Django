@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block TitleWeb %} Editar perfil {% endblock %}
+
+{% block TitleContent %} Editar perfil {{perfil.tipo}} {% endblock %}
+
+{% block Content %}
+
+	<form role = "form" id = "form" method = "post" enctype='multipart/form-data' action = ""> {% csrf_token %}
+		<div class = "form-group">
+			<table class = 'formTable'> {{form}} </table>
+			<p><input type = 'submit' value = 'Editar'></p>
+	</form>
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

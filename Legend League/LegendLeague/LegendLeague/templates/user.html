@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if user %}
+			<h3>Información del usuario</h3>
+			Nombre: {{user.first_name}}<br>
+			Apellidos: {{user.last_name}}<br>
+			Nombre de usuario: {{ user.username }}</br>
+			Correo electrónico: {{ user.email }} 
+			
+			
+			<br><a href="/users/{{user.id}}/eliminar_user"><input type="submit" value="Eliminar"></a>
+		{% endif %}
+		
+	{% endblock %}

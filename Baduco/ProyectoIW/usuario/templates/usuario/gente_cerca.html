@@ -1,0 +1,143 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Gente cerca {% endblock %}
+
+{% block RightNavBar %}
+
+	{% if user.id == usuario.id %}
+
+		<li class = "active"><a href = "/usuario/cambiar-perfil"> Cambiar perfil </a></li>
+		<li><a href = "/usuario/ver-amigos-{{perfil.id}}"> Ver amigos </a></li>
+		<li><a href = "/diario/entradas-agenda-{{usuario.id}}"> Agenda </a></li>
+		<li><a href = "/diario/entradas-personal-{{usuario.id}}"> Diario personal </a></li>
+		<li><a href = "/diario/entradas-pensamientos-{{usuario.id}}"> Diario de pensamientos </a></li>
+		<li><a href = "/usuario/editar-perfil-{{perfil.id}}"> Editar perfil </a></li>
+
+		<li class = "dropdown">
+			<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown"> Diarios <b class = "caret"></b></a>
+			<ul class = "dropdown-menu">
+				<li><a href = "/diario/entradas-agenda-{{usuario.id}}"> Agenda </a></li>
+				<li><a href = "/diario/entradas-personal-{{usuario.id}}"> Diario personal </a></li>
+				<li><a href = "/diario/entradas-pensamientos-{{usuario.id}}"> Diario de pensamientos </a></li>
+			</ul>
+		</li>
+
+{% endif %}
+
+{% endblock %}
+
+{% block Content %}
+
+	{% if cercanoList %}
+	{% for perfil in cercanoList %}		
+		<img src = '{{MEDIA_URL}}{{perfil.imagen}}' alt = "Imagen de perfil de {{perfil.nombre}}"  width='63' height='63'/>
+		<li style="font-size:25px;"><a href = "/usuario/ver-perfil-{{perfil.id}}"> {{perfil.nombre}} </a></li>
+		{% if perfil in amigos %}
+			<p>
+				<a href = "/usuario/nuevo-comentario-{{perfil.id}}" role = "Hacer comentario"> Hacer comentario </a>
+			</p>
+		{% else %}
+			<p>
+				<a href = "/usuario/enviar-peticion-amistad-{{perfil.id}}"> Enviar petición de amistad </a>
+			</p>
+		{% endif %}
+	{% endfor %}
+	{% else %}
+		<p>No hay usuarios cerca de ti</p>
+	{% endif %} 
+
+	<!--GEOPOSICIONAMIENTO	-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<html>
+	    <head>
+	        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	        <title>Google Maps Geoposicionamiento</title>
+	 
+	        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+ 
+	        <style>
+	 
+	        #mapGenteCerca
+	        {
+	            width: 90%;
+	            height: 250px;
+	            border: 1px solid #d0d0d0;
+	        }
+	 
+	        </style>
+	 <script>
+
+	 function localize()
+		{
+		 	if (navigator.geolocation)
+			{
+                navigator.geolocation.getCurrentPosition(mapa,error);
+            }
+            else
+            {
+                alert('Tu navegador no soporta geolocalizacion.');
+            }
+		}
+
+		function mapa(pos)
+		{
+		/************************ Aqui están las variables que t interesan***********************************/
+			var precision = pos.coords.accuracy;
+			var contenedor = document.getElementById("mapGenteCerca")
+			
+			var lat='{{perfil.latitud}}'
+			var x=lat.replace(",",".");
+			var lon='{{perfil.longitud}}'
+			var y=lon.replace(",",".");
+			var centro = new google.maps.LatLng(parseFloat(x),parseFloat(y));
+			
+			var propiedades =
+			{
+                		zoom: 12,
+                		center: centro,
+                		mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+			var map = new google.maps.Map(contenedor, propiedades);
+
+			var marcador = new google.maps.Marker({
+                		position: centro,
+                		map: map,
+                		title: "Tu posicion actual"
+            		});
+			{%for i in cercanoList%}
+			var lat{{i.pk}}='{{i.latitud}}'
+			var x{{i.pk}}=lat{{i.pk}}.replace(",",".");
+			var lon{{i.pk}}='{{i.longitud}}'
+			var y{{i.pk}}=lon{{i.pk}}.replace(",",".");
+			var centro{{i.pk}} = new google.maps.LatLng(parseFloat(x{{i.pk}}),parseFloat(y{{i.pk}}));
+			var marcador{{i.pk}} = new google.maps.Marker({
+                		position: centro{{i.pk}},
+                		map: map,
+                		title: "{{i.id}}"
+            		});
+			{%endfor%}
+		}
+
+		function error(errorCode)
+		{
+			if(errorCode.code == 1)
+				alert("No has permitido buscar tu localizacion")
+			else if (errorCode.code==2)
+				alert("Posicion no disponible")
+			else
+				alert("Ha ocurrido un error")
+		}
+
+ </script>
+	    </head>
+	    <body onLoad="localize()">
+	            <div id="mapGenteCerca" >
+	            	
+	            </div>
+					
+			
+	    </body>
+	</html>
+
+{% endblock %}

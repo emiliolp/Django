@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Comentario {% endblock %}
+
+{% block Content %}
+
+	<p> Fecha: {{comentario.fecha}} </p>
+	<p> De: {{comentario.perfilEmisor}} </p>
+	<p> Comentario: {{comentario.texto}} </p>
+	<p> Comentarios asociados: </p>
+	{% if comentarios %}
+		{% for coment in comentarios %}
+			<p> - {{coment.perfilEmisor}}: {{coment.texto}} </p>
+		{% endfor %}
+	{% else %}
+		<p> No tiene comentarios asociados. </p>
+	{% endif %}
+
+	<p>
+		<a class = "btn btn-lg btn-primary" href = "/usuario/hacer-comentario-{{comentario.id}}" role = "Hacer comentario"> Hacer comentario </a>
+	</p>
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

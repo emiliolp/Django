@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% comment %} User input form {% endcomment %}
+
+{% block todo %}
+	<h2>Usuario</h2>
+
+	<form id='form' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
+	    <table class='formTable'>{{form}}</table>
+		<p><input type='submit' value='Submit'></p>
+	</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Petición de amistad {% endblock %}
+
+{% block Content %}
+
+	<p> Fecha: {{peticion.fecha}} </p>
+	<p> Usuario: {{peticion.perfil_solicitante}} </p>
+	<p> Comentario: {{peticion.comentario}} </p>
+
+	<p>
+		<a class = "btn btn-lg btn-primary" href = "/usuario/aceptar-peticion-amistad-{{peticion.id}}" role = "Aceptar"> Aceptar </a>
+	</p>
+	<p>
+		<a class = "btn btn-lg btn-primary" href = "/usuario/rechazar-peticion-amistad-{{peticion.id}}" role = "Rechazar"> Rechazar </a>
+	</p>
+
+{% endblock %}
+<div id="dividerAbajoRight"></div>

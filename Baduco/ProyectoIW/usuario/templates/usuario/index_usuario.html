@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+  {% block TitleWeb %} Baduco {% endblock %}
+
+  {% block TitleNavBar %} <a class = "navbar-brand" href = "/usuario/"> Baduco     </a> {% endblock %}
+
+	{% block MainNavBar %}
+		{% if user.is_authenticated and not user.is_staff %}
+			<li class = "active"><div id = "perfilLocal"></div></li>
+			<li><a href = "/usuario/ver-peticiones-amistad-{{user.id}}"> Peticiones </a></li>
+      <li><div id = "geolocal"></div></li>
+      <li><a href = "/fileTransfer/listFiles/"> Transf. archivos </a></li>
+      <li><a href = "/chat/">Chat</a></li>
+      <li><a href = "/usuario/logout"> Logout </a></li>
+			<!-- <li><a href = "/chat/lista-chats"> Chats </a></li> -->
+			<li>
+				<!-- Buscador de personas -->
+				<form class="form-inline" role="form" action = "/usuario/buscar-usuario" method = "get">
+					<div class="input-append">
+						<input class="form-control" type = "text" name = "name" value = "" placeholder = "Buscar persona">
+						<input type = "submit" value = "Buscar">
+					</div>
+				</form>
+			</li>
+
+       <script>
+      var localizar = document.getElementById ("localizar");
+      localizar.onclick = localize();
+      function localize (){
+        if (navigator.geolocation){
+          navigator.geolocation.getCurrentPosition (mapa, error);
+        }else{
+          alert ('Tu navegador no soporta geolocalizacion.');
+        }
+      }
+
+      function mapa (pos){
+        /************************ Aqui están las variables que te interesan***********************************/
+        var latitud = pos.coords.latitude;
+        var longitud = pos.coords.longitude;
+        printLatitud (latitud, longitud);
+      }
+
+      function error (errorCode){
+        if (errorCode.code == 1)
+          alert ("No has permitido buscar tu localizacion")
+        else if (errorCode.code == 2)
+          alert ("Posicion no disponible")
+        else
+          alert ("Ha ocurrido un error")
+      }
+
+      function printLatitud (latitud, longitud){
+        document.getElementById("perfilLocal").innerHTML+= '<li><a href = "/usuario/usuario-{{user.id}}/'+latitud+'/'+longitud+'">Perfil</a></li>';
+        document.getElementById("geolocal").innerHTML += '<li><a href = "/usuario/gente_cerca-{{user.id}}/'+latitud+'/'+longitud+'">Gente cerca</a></li>';
+        document.getElementById("imageIzquierda").innerHTML+='<li><a href = "/usuario/usuario-{{user.id}}/'+latitud+'/'+longitud+'">{{perfil.nombre}}</a></li>';
+        document.getElementById("geolocal").style.margin="15px 10px 20px 30px";
+        document.getElementById("perfilLocal").style.margin="15px 10px 20px 30px";
+      }
+    </script>
+    <body onLoad="localize()">
+      <div id="map" ></div>
+    </body>
+		{% endif %}
+	{% endblock %}
+
+	{% block TitleContent %} Comentarios {% endblock %}
+  {% block section-navigation %}
+	<div id="user">
+		<img src = '{{MEDIA_URL}}{{perfil.imagen}}' alt = "Imagen de perfil de {{perfil.nombre}}"  width='123' height='123'/>
+    <div id = "imageIzquierda"></div>
+	</div>
+	<br><strong>Perfil: </strong>{{perfil.tipo}}</br>
+	<strong>Amigos: </strong>{{numAmigos}}
+	<strong>Puntuación: </strong>{{perfil.mediaVotos}}
+	<div id="dividerProfileLeft"></div>
+  {% endblock %}
+
+	{% block Content %}
+    {% if comentarios %}
+      {% for comentario in comentarios %}
+      <div class = "row">
+          <div class = "col-md-2">
+            <p style = "font-size: 15px;"> De: {{comentario.perfilEmisor}} </p>
+          </div>
+          <div class = "col-md-7">
+            <blockquote>
+              <p> {{comentario.padre}} {{comentario.texto}} </p>
+              <footer> {{comentario.fecha}}, {{comentario.hora}} </footer>
+            </blockquote>
+          </div>
+
+          <div class = "col-md-3">
+            <p>
+              <a class = "btn btn-md btn-link" href = "/usuario/detalles-comentario-{{comentario.id}}"> Detalles comentario </a>
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p> No tienes comentarios </p>
+    {% endif %}
+
+{% endblock %}
+
+         <!--{% block right-navigation %}-->
+	
+  
+<!--{% endblock %}-->

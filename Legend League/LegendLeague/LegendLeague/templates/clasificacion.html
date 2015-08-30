@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		<h3> Clasificacion </h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Pos.</th>
+						<th>Equipo</th>
+						<th>PJ</th>
+						<th>PG</th>
+						<th>PE</th>
+						<th>PP</th>
+						<th>GF</th>
+						<th>GC</th>
+						<th>PUNTOS</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for equipo in clasificacion %}
+						<tr>
+							<td>{{ equipo.posicion }}</td>
+							<td>{{ equipo.nombre_equipo }}</td>
+							<td>{{ equipo.partidos_jugados }}</td>
+							<td>{{ equipo.partidos_ganados }}</td>
+							<td>{{ equipo.partidos_empatados }}</td>
+							<td>{{ equipo.partidos_perdidos }}</td>
+							<td>{{ equipo.goles_favor }}</td>
+							<td>{{ equipo.goles_contra }}</td>
+							<td>{{ equipo.puntos }}</td>
+					{% endfor %}
+				</tbody>
+			</table>
+
+
+
+		
+	{% endblock %}

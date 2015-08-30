@@ -1,0 +1,157 @@
+{% extends "index.html" %}
+{% block TitleContent %} {{perfil.nombre}} {% endblock %}
+
+{% block RightNavBar %}
+
+	{% if user.id == usuario.id %}
+
+		<li class = "active"><a href = "/usuario/cambiar-perfil"> Cambiar perfil </a></li>
+		<li><a href = "/usuario/ver-amigos-{{perfil.id}}"> Ver amigos </a></li>
+		<li><a href = "/diario/entradas-agenda-{{usuario.id}}"> Agenda </a></li>
+		<li><a href = "/diario/entradas-personal-{{usuario.id}}"> Diario personal </a></li>
+		<li><a href = "/diario/entradas-pensamientos-{{usuario.id}}"> Diario de pensamientos </a></li>
+		<li><a href = "/usuario/editar-perfil-{{perfil.id}}"> Editar perfil </a></li>
+
+		<!---
+		<li class = "dropdown">
+			<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown"> Diarios <b class = "caret"></b></a>
+			<ul class = "dropdown-menu">
+				<li><a href = "/diario/entradas-agenda-{{usuario.id}}"> Agenda </a></li>
+				<li><a href = "/diario/entradas-personal-{{usuario.id}}"> Diario personal </a></li>
+				<li><a href = "/diario/entradas-pensamientos-{{usuario.id}}"> Diario de pensamientos </a></li>
+			</ul>
+		</li>
+		-->
+
+	{% endif %}
+
+{% endblock %}
+
+{% block Content %}
+
+  <div class = "row">
+	    <div class = "col-lg-3">
+
+	<div class="bubble" style="background: #0099CC; border-color: #0099CC;">{{ultimoPensamiento.contenido}}</div>
+
+	<img src = '{{MEDIA_URL}}{{perfil.imagen}}' alt = "Imagen de perfil de {{perfil.nombre}}"  width='250' height='250'/>
+
+
+	<!--GEOPOSICIONAMIENTO	-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<html>
+	    <head>
+	        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	        <title>Google Maps Geoposicionamiento</title>
+
+	        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+	        <style>
+
+	        #map
+	        {
+	            width: 60%;
+	            height: 250px;
+	            border: 1px solid #d0d0d0;
+	        }
+
+	        </style>
+	 <script>
+
+	 function localize()
+		{
+		 	if (navigator.geolocation)
+			{
+                navigator.geolocation.getCurrentPosition(mapa,error);
+            }
+            else
+            {
+                alert('Tu navegador no soporta geolocalizacion.');
+            }
+		}
+
+		function mapa(pos)
+		{
+		/************************ Aqui están las variables que t interesan***********************************/
+			var precision = pos.coords.accuracy;
+			var contenedor = document.getElementById("map")
+
+			var lat='{{perfil.latitud}}'
+			var x=lat.replace(",",".");
+			var lon='{{perfil.longitud}}'
+			var y=lon.replace(",",".");
+			var centro = new google.maps.LatLng(parseFloat(x),parseFloat(y));
+
+			var propiedades =
+			{
+                		zoom: 12,
+                		center: centro,
+                		mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+			var map = new google.maps.Map(contenedor, propiedades);
+
+			var marcador = new google.maps.Marker({
+                		position: centro,
+                		map: map,
+                		title: "Tu posicion actual"
+            		});
+		}
+
+		function error(errorCode)
+		{
+			if(errorCode.code == 1)
+				alert("No has permitido buscar tu localizacion")
+			else if (errorCode.code==2)
+				alert("Posicion no disponible")
+			else
+				alert("Ha ocurrido un error")
+		}
+
+ </script>
+	    </head>
+	    <body onLoad="localize()">
+
+	            <div id="map" >
+	            </div>
+
+
+	    </body>
+	</html>
+	</div>
+
+	<div class = "col-lg-6">
+	 
+
+	<p> Edad: {{perfil.edad}} </p>
+	<p> Sexo: {{perfil.sexo}} </p>
+	<p> Profesión: {{perfil.profesion}} </p>
+	<p> Perfil activo: {{perfil.tipo}} </p>
+	<p> Puntuación: {{perfil.mediaVotos}}</p>
+	<!--
+	</div>
+	<div class = "col-lg-3">-->
+
+	{% if user.id != usuario.id %}
+		<p>
+			<a class = "btn btn-lg btn-primary" href = "/usuario/enviar-peticion-amistad-{{perfil.id}}"> Enviar petición de amistad </a>
+		</p>
+		<p>
+			<a class = "btn btn-lg btn-primary" href = "/usuario/dejar-seguir-{{perfil.id}}" role = "Dejar de seguir"> Dejar de seguir </a>
+		</p>
+		<p>
+			<a class = "btn btn-lg btn-primary" href = "/usuario/nuevo-comentario-{{perfil.id}}" role = "Hacer comentario"> Hacer comentario </a>
+		</p>
+		<p>
+			<a class = "btn btn-lg btn-primary" href = "/usuario/votar-perfil-{{perfil.id}}" role = "Votar perfil"> Votar perfil </a>
+		</p>
+	{% else %}
+		<p>
+			<a class = "btn btn-lg btn-link" href = "/usuario/editar-perfil-{{perfil.id}}" role = "Editar"> Editar perfil </a>
+		</p>
+	{% endif %}
+	
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight" style="margin-top: -480px;"></div>
+{% endblock %}

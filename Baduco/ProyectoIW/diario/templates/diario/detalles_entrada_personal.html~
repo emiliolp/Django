@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Diario personal {% endblock %}
+
+{% block Content %}
+
+	{% if entrada %}
+
+    <div class = "row">
+			<div class = "col-md-2">
+				<br>
+				<p>
+					<a class = "btn btn-lg btn-primary" href = "/diario/editar-entrada-personal-{{entrada.id}}" role = "Editar entrada diario personal"> Editar </a>
+				</p>
+				<p>
+					<a class = "btn btn-lg btn-primary" href = "/diario/eliminar-entrada-personal-{{entrada.id}}" role = "Eliminar entrada diario personal"> Eliminar </a>
+				</p>
+			</div>
+			<div class = "col-md-8">
+				<blockquote>
+					<h2> {{entrada.titulo}} </p>
+					<p> {{entrada.contenido}} </p>
+					<footer> {{entrada.fecha}}, {{entrada.hora}} </footer>
+				</blockquote>
+			</div>
+		</div>
+
+	{% else %}
+
+		<p> No existe la entrada indicada. </p>
+
+	{% endif %}
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

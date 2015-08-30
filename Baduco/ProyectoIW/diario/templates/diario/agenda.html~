@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Agenda {% endblock %}
+
+{% block RightNavBar %}
+
+	<li><a href = "/diario/agenda-nueva-entrada-{{agenda.id}}"> Nueva entrada </a></li>
+
+{% endblock %}
+
+{% block Content %}
+
+	{% if entradas %}
+		{% for entrada in entradas %}
+
+			<ul>
+				<li><a href = "/diario/detalles-entrada-agenda-{{entrada.id}}"> {{entrada.fecha}} {{entrada.hora}} {{entrada.titulo}} </a></li>
+			</ul>
+
+		{% endfor %}
+	{% else %}
+		
+		<p> La agenda no tiene ninguna entrada. </p>
+
+	{% endif %}
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

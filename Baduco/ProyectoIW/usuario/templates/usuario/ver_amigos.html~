@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Amigos {% endblock %}
+
+{% block Content %}
+
+	{% if amigos %}
+		{% for amigo in amigos %}
+
+			<li><a href = "/usuario/ver-perfil-{{amigo.id}}"> {{amigo.nombre}} </a></li>
+
+		{% endfor %}
+	{% else %}
+
+		<p> No tienes amigos. </p>
+
+	{% endif %}
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

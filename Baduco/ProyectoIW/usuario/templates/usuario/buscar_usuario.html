@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Usuarios {% endblock %}
+
+{% block RightNavBar %}
+
+	<li><a href = "#"> Default </a></li>
+	<li class = "active"><a href = "#"> Default2 </a></li>
+	<li><a href = "/usuario/cambiar-perfil"> Cambiar perfil </a></li>
+
+{% endblock %}
+
+{% block Content %}
+	
+	{% if perfiles %}
+		{% for perfil in perfiles %}
+			<li><a href = '/usuario/ver-perfil-{{perfil.id}}'> {{perfil.nombre}} </a>
+		{% endfor %}
+	{% else %}
+		<p> No existe ningún usuario con esas características. </p>
+	{% endif %}
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

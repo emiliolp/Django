@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Diario de pensamientos {% endblock %}
+
+{% block RightNavBar %}
+
+	<li><a href = "/diario/pensamientos-nueva-entrada-{{diario.id}}"> Nueva entrada </a></li>
+
+{% endblock %}
+
+{% block Content %}
+
+	{% if entradas %}
+		{% for entrada in entradas %}
+
+			<ul>
+				<li><a href = "/diario/detalles-entrada-pensamientos-{{entrada.id}}"> {{entrada.fecha}} {{entrada.hora}} {{entrada.titulo}} </a></li>
+			</ul>
+
+		{% endfor %}
+	{% else %}
+		
+		<p> El diario de pensamientos no tiene ninguna entrada. </p>
+
+	{% endif %}
+
+{% endblock %}
+{% block right-navigation %}
+	<div id="dividerAbajoRight"></div>
+{% endblock %}

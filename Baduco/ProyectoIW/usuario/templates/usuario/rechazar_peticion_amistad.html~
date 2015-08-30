@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+
+{% block TitleContent %} Petición de amistad rechazada {% endblock %}
+
+{% block Content %}
+
+	<p> Has rechazado la solicitud de amistad de {{peticion.perfil_solicitante}}. </p>
+
+{% endblock %}
+<div id="dividerAbajoRight"></div>

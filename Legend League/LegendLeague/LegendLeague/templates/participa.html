@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+	{% block content %}
+		{% if participa %}
+			<h3> {{participa.jugador}} </h3>
+			<b>Partido:</b> {{participa.partido}}<br>
+			<b>Número de amarillas:</b> {{ participa.amarilla }}</br>
+			<b>Número de rojas:</b> {{ participa.roja }} 
+			<br>
+			<b>Minutos:</b> {{participa.minutos}}<br>
+			<b>Goles:</b> {{ participa.goles}}<br>
+			
+			<br><a href="/principal/equipos/{{equipo.id}}/{{jugador.id}}/participa{{participa.id}}/eliminar_participacion"><input type="submit" value="Eliminar"></a>
+		{% endif %}
+		
+	{% endblock %}

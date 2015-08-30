@@ -1,0 +1,17 @@
+Instrucciones para ejecutar aplicación:
+
+Requisitos previos:
+-Tener instalado Django 1.5.5 o superior.
+
+Pasos a seguir:
+-Desde el terminal, entrar en el directorio /ProyectoIW encontrado en la carpeta actual y ejecutar el siguiente comando:
+
+	python manage.py runserver
+
+-Acceder a la dirección facilitada tras la ejecución del comando anterior.
+
+-Una vez arrancada la aplicación podrá crear un usuario nuevo accediendo a la opción "Registrarse" o iniciar sesión con algún usuario existente en el sistema. Los usuarios/contaseñas incluídos son:
+
+	emilio/emilio
+	pablo/pablo
+	juanca/juanca
